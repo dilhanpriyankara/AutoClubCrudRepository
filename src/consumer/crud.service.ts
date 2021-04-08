@@ -123,7 +123,7 @@ export class CrudService {
                 `
         
                 return query;
-            }
-
+            } 
 
 }
+
