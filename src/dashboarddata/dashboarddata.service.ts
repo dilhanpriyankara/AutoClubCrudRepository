@@ -136,7 +136,7 @@ export class DashboarddataService {
     async updategraphqlrecord(updateDataDto:UpdateDataDto):Promise<any>{
       return new Promise(resolve => {
           
-          const data =  this.getDeletequery(updateDataDto); 
+          const data =  this.getUpdatequery(updateDataDto); 
           
           const options = {
           hostname: 'localhost',
