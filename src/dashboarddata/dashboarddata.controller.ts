@@ -1,5 +1,6 @@
-import { Controller,Get,Delete,Param } from '@nestjs/common';
+import { Controller,Get,Delete,Param,Put,Body } from '@nestjs/common';
 import { DashboarddataService } from "./dashboarddata.service";
+import { UpdateDataDto } from './updateDataDto';
 @Controller('dashboarddata')
 export class DashboarddataController {
     constructor(private dashboarddataService:DashboarddataService){}
@@ -17,5 +18,11 @@ export class DashboarddataController {
     return data;
   }
   
+  @Put(':id')
+  async update(@Param('id') id: string, @Body() updateDataDto: UpdateDataDto) :Promise<any>{
+    console.log(updateDataDto.id+" "+updateDataDto.firstName);
+    var data=await this.dashboarddataService.updategraphqlrecord(updateDataDto);
+    return data;
+  }
   
 }
