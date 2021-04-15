@@ -185,6 +185,79 @@ export class DashboarddataService {
       
     }
 
+    /////////////////////////////////////////////////////////////////////////////////////////////
+
+    async  findPaginationData(pagesize: number):Promise<any>{
+        
+      return new Promise(resolve => {
+          setTimeout(() => {
+
+          const query=  this.getPaginationquery(pagesize);        
+          let returndata = '';   
+
+          const options = {
+          hostname: 'localhost',
+          port: 5000,
+          path: '/graphql',
+          method: 'POST',
+          headers: {
+              'Content-Type': 'application/graphql',
+              'Content-Length': query.length
+          }
+          }
+          
+          const  req = http.request(options, res => {
+              console.log(`statusCode: ${res.statusCode}`);
+
+              res.on('data', d => {
+                  //process.stdout.write(d)                    
+                  returndata += d;
+              });
+              res.on('end', () => {
+                 // console.log(returndata);
+                 resolve(returndata); 
+              });
+          })
+      
+          req.on('error', error => {
+              console.error(error)               
+          })
+          
+          req.write(query)        
+          req.end(); 
+
+         
+              
+      }, 100);
+  });
+
+    
+     
+  }
+
+
+  getPaginationquery(pagesize: number){
+      const query=`query MyQuery {
+        allAutoclubdata(first: 100, orderBy: MANUFACTURED_DATE_ASC, offset:${pagesize}) {
+          nodes {
+            firstName
+            ageOfVehicle
+            carMake
+            carModel
+            email
+            id
+            lastName
+            manufacturedDate
+            
+          }
+        }
+      }
+      `
+      return query;
+  }
+
+
+
 
 
 

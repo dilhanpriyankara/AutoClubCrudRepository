@@ -12,6 +12,14 @@ export class DashboarddataController {
     return data;
   }
 
+  @Get(':pagesize')
+   async findPeginationData(@Param('pagesize') pagesize: number): Promise<any> {
+    console.log(pagesize);
+    var data=await this.dashboarddataService.findPaginationData(pagesize);
+    console.log(data);
+    return data;
+  }
+
   @Delete(':id')
   async deletedata(@Param('id') id: number):Promise<any>{
     var data=await this.dashboarddataService.deletegraphqlrecord(id);
