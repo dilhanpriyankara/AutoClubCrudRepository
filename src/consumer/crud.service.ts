@@ -94,14 +94,14 @@ export class CrudService {
                     createAutoclubdatum(input:  {
                         autoclubdatum: {
                           id: ${id},
-                          firstName: "+${first_name}+",
-                          lastName: "+${last_name}+",
-                          email: "+${email}+",
-                          carMake: "+${carMake}+",
-                          carModel: "+${carModel}+",
+                          firstName: "${first_name}",
+                          lastName: "${last_name}",
+                          email: "${email}",
+                          carMake: "${carMake}",
+                          carModel: "${carModel}",
                           ageOfVehicle: ${age_of_vehicle},
                           manufacturedDate: "2018-08-12",
-                          vinNumber: "+${vin_number}+"            
+                          vinNumber: "${vin_number}"            
                           
                         }
                       })
