@@ -3,6 +3,7 @@ import { Injectable } from '@nestjs/common';
 import { Job } from 'bull';
 import * as fs from 'fs';
 import { from } from 'rxjs';
+import * as converter from 'json-2-csv';
 
 @Processor('csvexporter')
 export class ExporttocsvconsumerService {
@@ -12,19 +13,26 @@ export class ExporttocsvconsumerService {
     async transcode(job: Job<unknown>) {
         let progress = 0;       
         var obj = JSON.parse(JSON.stringify(job.data));
-        console.log(obj);
+        
+        try {
+            converter.json2csvAsync(obj).then(csv=>{
+                console.log(csv);
+                fs.writeFileSync('C:/Users/DELL PC/Documents/CSV/todos.csv', csv);        
+                }).catch(err=>console.log(err));
+        } catch (error) {
+            console.log(error);
+        }     
+        
        
-       
-                
+        
        
         return {};
     }
 
     @OnQueueCompleted()
     onActive(job: Job) {
-        console.log(
-        `Processing job ${job.id} of type ${job.name} with data ${job.data}...`,
-        );
+       
+        console.log(`Processing job ${job.id} is completed...`);
     }
 
    
