@@ -56,7 +56,7 @@ export class DashboarddataService {
 
     getquery(){
         const query=`{
-            allAutoclubdata {
+          allAutoclubdata(first: 100, orderBy: ID_ASC, offset:0) {
               nodes {
                 id
                 firstName
