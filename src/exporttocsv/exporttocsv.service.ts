@@ -40,7 +40,7 @@ export class ExporttocsvService {
               let arr= JSON.parse(returndata).data.allAutoclubdata.nodes;
               var filteredArray =arr.filter(vehicleage=>vehicleage.ageOfVehicle>ageofcar);
               this.csvQue.add(filteredArray)
-              resolve("Successfully added to queue"); 
+              resolve({"message":"Successfully added to queue"}); 
             });
         })
     

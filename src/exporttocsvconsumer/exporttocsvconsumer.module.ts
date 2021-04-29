@@ -1,5 +1,6 @@
 import { BullModule } from '@nestjs/bull';
 import { Module } from '@nestjs/common';
+import { Gateway } from '../websocket/gateway';
 import { ExporttocsvconsumerService } from './exporttocsvconsumer.service';
 
 @Module({
@@ -14,7 +15,8 @@ import { ExporttocsvconsumerService } from './exporttocsvconsumer.service';
       name:'csvexporter'
     
     }), 
+    
  ],
-  providers: [ExporttocsvconsumerService]
+  providers: [ExporttocsvconsumerService,Gateway]
 })
 export class ExporttocsvconsumerModule {}

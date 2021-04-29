@@ -7,12 +7,14 @@ import { DashboarddataService } from './dashboarddata/dashboarddata.service';
 import { DashboarddataModule } from './dashboarddata/dashboarddata.module';
 import { ExporttocsvModule } from './exporttocsv/exporttocsv.module';
 import { ExporttocsvconsumerModule } from './exporttocsvconsumer/exporttocsvconsumer.module';
+import { WebsocketModule } from './websocket/websocket.module';
+
 
 
 
 @Module({
-  imports: [CrudModule, DashboarddataModule, ExporttocsvModule, ExporttocsvconsumerModule,],
+  imports: [CrudModule, DashboarddataModule, ExporttocsvModule, ExporttocsvconsumerModule, WebsocketModule,],
   controllers: [AppController, DashboarddataController,],
-  providers: [AppService, DashboarddataService,],
+  providers: [AppService, DashboarddataService],
 })
 export class AppModule {}

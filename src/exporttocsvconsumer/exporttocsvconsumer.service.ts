@@ -4,10 +4,12 @@ import { Job } from 'bull';
 import * as fs from 'fs';
 import { from } from 'rxjs';
 import * as converter from 'json-2-csv';
+import { Gateway } from '../websocket/gateway';
 
 @Processor('csvexporter')
 export class ExporttocsvconsumerService {
 
+    constructor(private gateway: Gateway){}
 
    @Process()
     async transcode(job: Job<unknown>) {
@@ -17,8 +19,8 @@ export class ExporttocsvconsumerService {
         try {
             converter.json2csvAsync(obj).then(csv=>{
                 console.log(csv);
-                fs.writeFileSync('C:/Users/DELL PC/Documents/CSV/todos.csv', csv);        
-                }).catch(err=>console.log(err));
+                fs.writeFileSync('C:/Users/damarasena/Documents/csv/autoclub.csv', csv);        
+            }).catch(err=>console.log(err));
         } catch (error) {
             console.log(error);
         }     
@@ -31,7 +33,7 @@ export class ExporttocsvconsumerService {
 
     @OnQueueCompleted()
     onActive(job: Job) {
-       
+        this.gateway.emitfrontendData();
         console.log(`Processing job ${job.id} is completed...`);
     }
 
