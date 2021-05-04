@@ -33,7 +33,8 @@ export class DashboarddataService {
                 });
                 res.on('end', () => {
                    // console.log(returndata);
-                   resolve(returndata); 
+                  //console.log(JSON.parse(returndata)) 
+                   resolve(JSON.parse(returndata).data.allAutoclubdata.nodes); 
                 });
             })
         
@@ -76,7 +77,7 @@ export class DashboarddataService {
 
     async deletegraphqlrecord(id: number):Promise<any>{
         return new Promise(resolve => {
-            
+            let returndata = '';   
             const data =  this.getDeletequery(id); 
             
             const options = {
@@ -95,11 +96,14 @@ export class DashboarddataService {
             
             res.on('data', d => {
                 //process.stdout.write(d)
+                returndata+=d;
             }),
             res.on('end', () => {
-                // console.log(returndata);
-                resolve("Successfully Deleted"); 
-             });
+                //console.log(returndata);
+                resolve(JSON.parse(returndata).data.deleteAutoclubdatumById.autoclubdatum); 
+               
+                
+              });
             })
             
             req.on('error', error => {
@@ -135,7 +139,7 @@ export class DashboarddataService {
     /////////////////////////////////////////////////////////////////////////////////////////////
     async updategraphqlrecord(updateDataDto:UpdateDataDto):Promise<any>{
       return new Promise(resolve => {
-          
+          let returndata = '';    
           const data =  this.getUpdatequery(updateDataDto); 
           
           const options = {
@@ -154,10 +158,11 @@ export class DashboarddataService {
           
           res.on('data', d => {
               //process.stdout.write(d)
+              returndata+=d;
           }),
           res.on('end', () => {
-              // console.log(returndata);
-              resolve("Successfully updated"); 
+              
+              resolve({"msg":"Successfully updated"}); 
            });
           })
           
@@ -175,9 +180,10 @@ export class DashboarddataService {
       
       const query=`mutation {
         updateAutoclubdatumById(
-          input: {autoclubdatumPatch: {ageOfVehicle: ${updateDataDto.ageOfVehicle}, carMake: "${updateDataDto.ageOfVehicle}", carModel: "${updateDataDto.carModel}", email: "${updateDataDto.email}", firstName: "${updateDataDto.firstName}", lastName: "${updateDataDto.lastName}", manufacturedDate: "${updateDataDto.manufacturedDate}"}, id: ${updateDataDto.id}}
+          input: {autoclubdatumPatch: {ageOfVehicle: ${updateDataDto.ageOfVehicle}, carMake: "${updateDataDto.carMake}", carModel: "${updateDataDto.carModel}", email: "${updateDataDto.email}", firstName: "${updateDataDto.firstName}", lastName: "${updateDataDto.lastName}", manufacturedDate: "${updateDataDto.manufacturedDate}"}, id: ${updateDataDto.id}}
         ) {
           clientMutationId
+         
         }
       }`
 
@@ -214,8 +220,8 @@ export class DashboarddataService {
                   returndata += d;
               });
               res.on('end', () => {
-                 // console.log(returndata);
-                 resolve(returndata); 
+                 //console.log(returndata);
+                 resolve(JSON.parse(returndata).data.allAutoclubdata.nodes); 
               });
           })
       

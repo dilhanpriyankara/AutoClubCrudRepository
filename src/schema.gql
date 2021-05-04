@@ -1,0 +1,36 @@
+# ------------------------------------------------------
+# THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
+# ------------------------------------------------------
+
+type AutoclubData {
+  id: Int!
+  firstName: String!
+  lastName: String!
+  phone: String!
+  email: String!
+  carModel: String!
+  carMake: String!
+  ageOfVehicle: String!
+  manufacturedDate: String!
+}
+
+type Query {
+  findAllData: [AutoclubData!]!
+  findPeginationData(pagesize: Int!): [AutoclubData!]!
+}
+
+type Mutation {
+  deletedata(recordid: Int!): AutoclubData!
+  updatedata(UpdatedataInputType: UpdatedataInputType!): AutoclubData!
+}
+
+input UpdatedataInputType {
+  id: Float!
+  firstName: String!
+  lastName: String!
+  email: String!
+  carModel: String!
+  carMake: String!
+  ageOfVehicle: Float!
+  manufacturedDate: String!
+}
