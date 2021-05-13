@@ -2,6 +2,7 @@ import { BullModule } from '@nestjs/bull';
 import { Module } from '@nestjs/common';
 import { ExporttocsvController } from './exporttocsv.controller';
 import { ExporttocsvService } from './exporttocsv.service';
+import { ExporttocsvResolver } from './exporttocsv.resolver';
 
 @Module({
   imports:[
@@ -17,6 +18,6 @@ import { ExporttocsvService } from './exporttocsv.service';
     }), 
  ],
   controllers: [ExporttocsvController],
-  providers: [ExporttocsvService]
+  providers: [ExporttocsvService, ExporttocsvResolver]
 })
 export class ExporttocsvModule {}

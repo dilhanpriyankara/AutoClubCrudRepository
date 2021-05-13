@@ -17,6 +17,7 @@ type AutoclubData {
 type Query {
   findAllData: [AutoclubData!]!
   findPeginationData(pagesize: Int!): [AutoclubData!]!
+  exportDatatoCSV(ageofcar: Int!): [AutoclubData!]!
 }
 
 type Mutation {
