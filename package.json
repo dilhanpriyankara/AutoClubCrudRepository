@@ -40,7 +40,8 @@
     "json2csv": "^5.0.6",
     "reflect-metadata": "^0.1.13",
     "rimraf": "^3.0.2",
-    "rxjs": "^6.6.6"
+    "rxjs": "^6.6.6",
+    "socketcluster-server": "^16.0.1"
   },
   "devDependencies": {
     "@nestjs/cli": "^7.5.6",

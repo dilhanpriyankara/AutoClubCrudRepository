@@ -5,11 +5,13 @@ import * as fs from 'fs';
 import { from } from 'rxjs';
 import * as converter from 'json-2-csv';
 import { Gateway } from '../websocket/gateway';
+import { Socketclusterappgateway } from 'src/websocket/socketclusterappgateway';
 
 @Processor('csvexporter')
 export class ExporttocsvconsumerService {
 
-    constructor(private gateway: Gateway){}
+    constructor(private socketclusterappgateway: Socketclusterappgateway
+        ){}
 
    @Process()
     async transcode(job: Job<unknown>) {
@@ -33,7 +35,8 @@ export class ExporttocsvconsumerService {
 
     @OnQueueCompleted()
     onActive(job: Job) {
-        this.gateway.emitfrontendData();
+        //this.gateway.emitfrontendData();
+        this.socketclusterappgateway.connectionComplete(); 
         console.log(`Processing job ${job.id} is completed...`);
     }
 
