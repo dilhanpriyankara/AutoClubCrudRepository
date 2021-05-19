@@ -8,14 +8,13 @@ export class CrudService {
 
     @Process()
     async transcode(job: Job<unknown>) {
-        let progress = 0;
-        //console.log(job.data);
+        let progress = 0;       
         var obj = JSON.parse(JSON.stringify(job.data));
         var keys = Object.keys(obj);
         var arr=obj[keys[0]];
         //console.log(arr);
         for (var i = 0; i < arr.length; i++) {              
-            console.log(arr[i]);
+            //console.log(arr[i]);
             this.savetographql(arr[i]);
         }        
        
@@ -62,15 +61,15 @@ export class CrudService {
                   }
                   
                   const req = http.request(options, res => {
-                    console.log(`statusCode: ${res.statusCode}`)
+                    //console.log(`statusCode: ${res.statusCode}`)
                   
                     res.on('data', d => {
-                      process.stdout.write(d)
+                      //process.stdout.write(d)
                     })
                   })
                   
                   req.on('error', error => {
-                    console.error(error)
+                    //console.error(error)
                   })
                   
                   req.write(data)
@@ -84,12 +83,15 @@ export class CrudService {
                let first_name= objectdata.first_name;
                let last_name=objectdata.last_name;
                let email= objectdata.email;
-               let carMake=objectdata.carMake;
-               let carModel= objectdata.carModel;
+               let carMake=objectdata.car_make;
+               let carModel= objectdata.car_model;
                let age_of_vehicle=  objectdata.age_of_vehicle;
                let manufactured_date= objectdata.manufactured_date;
                let vin_number= objectdata.vin_number;
               
+              
+              
+
                 const query=`mutation createPost{
                     createAutoclubdatum(input:  {
                         autoclubdatum: {

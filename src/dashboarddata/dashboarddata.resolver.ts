@@ -38,7 +38,7 @@ export class DashboarddataResolver {
     @Query(returns => [AutoclubData])
     async findPeginationData(@Args({ name: 'pagesize', type: () => Int }) pagesize: number) {       
         var data=await this.dashboarddataService.findPaginationData(pagesize);  
-        console.log(data);       
+        //console.log(data);       
         return data;        
     }
 

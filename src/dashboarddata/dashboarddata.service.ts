@@ -243,8 +243,9 @@ export class DashboarddataService {
 
 
   getPaginationquery(pagesize: number){
+    
       const query=`query MyQuery {
-        allAutoclubdata(first: 100, orderBy: MANUFACTURED_DATE_ASC, offset:${pagesize}) {
+        allAutoclubdata(first:100, orderBy: MANUFACTURED_DATE_ASC,offset:${pagesize}) {
           nodes {
             firstName
             ageOfVehicle
