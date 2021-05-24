@@ -20,7 +20,7 @@ export class ExporttocsvconsumerService {
         
         try {
             converter.json2csvAsync(obj).then(csv=>{
-                console.log(csv);
+                //console.log(csv);
                 fs.writeFileSync('C:/Users/damarasena/Documents/csv/autoclub.csv', csv);        
             }).catch(err=>console.log(err));
         } catch (error) {

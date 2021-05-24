@@ -15,24 +15,21 @@ export class Socketclusterappgateway{
     }
 
     
-
+    
     async connectionComplete() {
-        console.log("call connection complete");
-        this.agServer.exchange.transmitPublish('csvcompletedChanel','Successfully CSV Exported',);
-        /*for await (const { socket } of this.agServer.listener('connection')) {
+             
+      console.log("call connection complete");
+     // this.agServer.exchange.transmitPublish('csvcompletedChanel','Successfully CSV Exported',);
+      for await (const { socket } of this.agServer.listener('connection')) {
             console.log('Socket is ready');
             for await (const data of socket.receiver('channelName')) {
-                console.log(data);
-                console.log('sended');
-                this.agServer.exchange.transmitPublish(
-                'channelName',
-                'This is some data from server Dilhan',
+               console.log(data);               
+               this.agServer.exchange.transmitPublish(
+                data,
+                'Successfully CSV Exported',
                 );
             }
-        }*/
+        }
+       
     }
-   
-
-    
-
 }
